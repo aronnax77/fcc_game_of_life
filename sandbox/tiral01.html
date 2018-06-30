@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/trial01.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Game of Life Cell Trial</title>
+</head>
+<body>
+
+  <h1>Game of Life</h1>
+
+  <div id="app">
+    <div class="container">
+      <gol-cell v-for="(num, key, index) in 25"
+                :id="'cell' + key"
+                @select="selectCell"
+                :class="{blue: isAlive[key]}"
+      ></gol-cell>
+    </div>
+
+
+    <pre>
+      {{ $data }}
+    </pre>
+
+  </div><!-- Vue.js app -->
+
+  <template id="cell">
+    <div class="cell"
+         @click="process">            <!-- "$emit('select', num - 1)" -->
+    </div>
+  </template>
+
+  <template id="status">
+    <div>
+      <p>Index </p>
+    </div>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/trial01.js"></script>
+
+</body>
+</html>
