@@ -13,24 +13,24 @@ var Cell = {
 var main = new Vue({
   el: "#app",
   data: {
-    isAlive: []
+    grid: {}
   },
   components: {
     "gol-cell": Cell
   },
   methods: {
     selectCell: function(i) {
-      if(this.isAlive[i] === 0) {
-        this.$set(this.isAlive, i, 1);
+      if(this.grid.arr[i] === 0) {
+        this.$set(this.grid.arr, i, 1);
       } else {
-        this.$set(this.isAlive, i, 0);
+        this.$set(this.grid.arr, i, 0);
       }
     }
   },
-  mounted: function() {
-    //for(var i = 0; i < 25; i++) {
-      //this.isAlive.push(0);
-      this.isAlive = start;
-    //}
+  created: function() {
+    var newGrid = new Grid(5, 5);
+    this.grid = newGrid;
+    this.grid.arr = start;
+
   }
 });

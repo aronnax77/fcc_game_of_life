@@ -71,12 +71,3 @@ Grid.prototype.next = function() {
   }
   return res;
 };
-
-//exports.Grid = Grid;
-
-//var grid = new Grid(5, 5);
-//grid.arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-//console.log("index " + grid.posToIndex([3, 2]));
-//console.log("value " + grid.arr[11]);
-//console.log("count " + grid.liveCount([5, 5]));
-//console.log(grid.next());

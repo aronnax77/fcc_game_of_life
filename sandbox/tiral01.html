@@ -16,7 +16,7 @@
       <gol-cell v-for="(num, key, index) in 25"
                 :id="'cell' + key"
                 @select="selectCell"
-                :class="{blue: isAlive[key]}"
+                :class="{blue: grid.arr[key]}"
       ></gol-cell>
     </div>
 
@@ -41,6 +41,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="js/data.js"></script>
+  <script src="js/web_gol.js"></script>
   <script src="js/trial01.js"></script>
 
 </body>
