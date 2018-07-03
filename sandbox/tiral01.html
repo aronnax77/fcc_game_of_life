@@ -12,8 +12,11 @@
   <h1>Game of Life</h1>
 
   <div id="app">
+    <button @click="startGenerations()">Start</button>
+    <button @click="stopGenerations()">Stop</button>
+    <button @click="clear()">Clear</button>
     <div class="container">
-      <gol-cell v-for="(num, key, index) in 25"
+      <gol-cell v-for="(num, key, index) in 100"
                 :id="'cell' + key"
                 @select="selectCell"
                 :class="{blue: grid.arr[key]}"

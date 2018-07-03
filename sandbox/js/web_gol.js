@@ -29,7 +29,6 @@ Grid.prototype.posToIndex = function(pos) {
 // Method to calculate the number of live cells which surround any given cell
 // taking the cells position [r, c] as an argument
 Grid.prototype.liveCount = function(pos) {
-  debugger;
   var res = 0;          // holds the result of the count
   var arrIndex;         // holds the present Grid arr index
   var row = pos[0];
@@ -47,7 +46,8 @@ Grid.prototype.liveCount = function(pos) {
   return res;
 };
 
-// Method to determine next generation
+// Method to determine next generation.  Returns a single dimensional array
+// holds the positions for the next generation
 Grid.prototype.next = function() {
   var res = [];
   var cellStatus, cellIndex, currentLiveCount;
