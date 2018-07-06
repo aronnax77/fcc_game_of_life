@@ -15,6 +15,7 @@ var main = new Vue({
   data: {
     rows: 10,
     cols: 10,
+    pattern: [testPattern],
     grid: {},
     timer: undefined
   },
@@ -58,6 +59,11 @@ var main = new Vue({
         }
       }
       console.log(res);
+    },
+    addPatternToGrid: function(pat) {
+      for(var x = 0; x < pat.length; x++) {
+        this.$set(this.grid.arr, pat[x], 1);
+      }
     }
   },
   created: function() {
