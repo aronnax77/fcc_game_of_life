@@ -13,6 +13,8 @@ var Cell = {
 var main = new Vue({
   el: "#app",
   data: {
+    rows: 10,
+    cols: 10,
     grid: {},
     timer: undefined
   },
@@ -47,10 +49,19 @@ var main = new Vue({
     goNext: function() {
       var nextGeneration = this.grid.next();
       this.grid.arr = nextGeneration;
+    },
+    printPattern: function() {
+      var res = [];
+      for(var x = 0; x < this.grid.arr.length; x++) {
+        if(this.grid.arr[x] === 1) {
+          res.push(x);
+        }
+      }
+      console.log(res);
     }
   },
   created: function() {
-    var newGrid = new Grid(10, 10);
+    var newGrid = new Grid(this.rows, this.cols);
     this.grid = newGrid;
     //this.grid.arr = start;
 

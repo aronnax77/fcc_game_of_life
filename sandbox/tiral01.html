@@ -15,6 +15,7 @@
     <button @click="startGenerations()">Start</button>
     <button @click="stopGenerations()">Stop</button>
     <button @click="clear()">Clear</button>
+    <button @click="printPattern()">Print Pattern</button>
     <div class="container">
       <gol-cell v-for="(num, key, index) in 100"
                 :id="'cell' + key"
