@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 400px;
+  height: 400px
+  border: 2px solid red;
+  margin: 40px auto;
+}
+
+.cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid lightblue;
+  float: left;
+}
+
+.cell:hover {
+  cursor: pointer;
+}
+
+.blue {
+  background-color: blue;
+}

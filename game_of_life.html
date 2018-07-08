@@ -1,0 +1,114 @@
+<!-- Author: Richard Myatt
+     Date: 20 June 2018
+     Revised: 3 July 2018
+
+     An exercise in data visualization and a second use of materialize.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link rel="stylesheet" href="css/game_of_life.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Game of Life</title>
+</head>
+<body>
+
+  <!-- Vue.js application -->
+  <div id="app">
+    <!-- give our app a nice header -->
+    <!--<logo @openeditor="openEditorForNewRecipe" v-show="show"></logo>-->
+
+    <button @click="startGenerations()">Start</button>
+    <button @click="stopGenerations()">Stop</button>
+    <button @click="clear()">Clear</button>
+    <button @click="printPattern()">Print Pattern</button>
+    <button @click="addPatternToGrid(pattern[0])">Add Pattern</button>
+    <div class="container">
+      <gol-cell v-for="(num, key, index) in 400"
+                :id="'cell' + key"
+                @select="selectCell"
+                :class="{blue: grid.arr[key]}"
+      ></gol-cell>
+    </div>
+
+
+    <pre>
+      {{ $data }}
+    </pre>
+
+  </div><!-- Vue.js app -->
+
+
+  <!-- Materialize Modal -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>About Recipe Box</h4>
+      <p>Recipe Box is one of the challenges set by FreeCodeCamp in connection with the data visualization series.  The application allows you to add, delete, and edit recipes which are stored on the browsers localStorage.</p>
+      <p>The application is written using Materialize and Vue.js.</p>
+      <pre>
+Author:  Richard Myatt
+Date:    20 June 2018
+Revised: 3 July 2018
+Version: 1.1.1
+      </pre>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="modal-close waves-effect waves-green">Close</a>
+    </div>
+  </div>
+
+
+
+  <!--                        TEMPLATES                          -->
+
+  <!-- Title bar shown on every page -->
+  <template id="logo">
+    <div>
+      <nav>
+        <div class="nav-wrapper orange">
+          <router-link class="brand-logo " to="/">Game of Life</router-link>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#">Select</a></li>
+          <li><a href="#">New</a></li>
+          <li><a href="#modal1" class="modal-trigger">About</a></li>
+        </ul>
+        </div>
+      </nav>
+
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="#" class="sidenav-close right close" >X</a></li>
+        <li><router-link to="/">Home</router-link></li>
+        <li><a href="#" @click="$emit('openeditor')">New</a></li>
+        <li><a href="#modal1" class="modal-trigger">About</a></li>
+      </ul>
+
+    </div>
+  </template>
+
+
+  // Grid cell template
+  <template id="cell">
+    <div class="cell"
+         @click="process">            <!-- "$emit('select', num - 1)" -->
+    </div>
+  </template>
+
+
+  <!--JavaScript at end of body for optimized loading-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.min.js"></script>
+  <script src="js/game_of_life_logic.js"></script>
+  <script src="js/game_of_life_data.js"></script>
+  <script src="js/game_of_life.js"></script>
+
+</body>
+</html>
