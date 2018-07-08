@@ -10,17 +10,22 @@ var Cell = {
   }
 };
 
+var Title = {
+  template: "#logo"
+};
+
 var main = new Vue({
   el: "#app",
   data: {
-    rows: 20,
+    rows: 16,
     cols: 20,
     pattern: [testPattern],
     grid: {},
     timer: undefined
   },
   components: {
-    "gol-cell": Cell
+    "gol-cell": Cell,
+    "title-bar": Title
   },
   methods: {
     // Method which runs when the cell is left mouse clicked.  Cell is either
