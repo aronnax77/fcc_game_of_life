@@ -18,7 +18,7 @@
     <button @click="printPattern()">Print Pattern</button>
     <button @click="addPatternToGrid(pattern[0])">Add Pattern</button>
     <div class="container">
-      <gol-cell v-for="(num, key, index) in 100"
+      <gol-cell v-for="(num, key, index) in 30"
                 :id="'cell' + key"
                 @select="selectCell"
                 :class="{blue: grid.arr[key]}"

@@ -22,14 +22,13 @@ Grid.prototype.indexToPos = function(i) {
 Grid.prototype.posToIndex = function(pos) {
   var r = pos[0];
   var c = pos[1];
-  var index = (r - 1) * this.rows + c - 1;
+  var index = (r - 1) * this.cols + c - 1;
   return index;
 };
 
 // Method to calculate the number of live cells which surround any given cell
 // taking the cells position [r, c] as an argument
 Grid.prototype.liveCount = function(pos) {
-  debugger;
   var res = 0;          // holds the result of the count
   var arrIndex;         // holds the present Grid arr index
   var row = pos[0];
@@ -72,11 +71,10 @@ Grid.prototype.next = function() {
   return res;
 };
 
-//exports.Grid = Grid;
+exports.Grid = Grid;
 
-//var grid = new Grid(5, 5);
-//grid.arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-//console.log("index " + grid.posToIndex([3, 2]));
-//console.log("value " + grid.arr[11]);
-//console.log("count " + grid.liveCount([5, 5]));
-//console.log(grid.next());
+
+var grid = new Grid(5, 6);
+var pos = [2, 2];
+//assert.equal(7, grid.posToIndex(pos));
+console.log(grid.posToIndex(pos));

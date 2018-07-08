@@ -22,7 +22,7 @@ Grid.prototype.indexToPos = function(i) {
 Grid.prototype.posToIndex = function(pos) {
   var r = pos[0];
   var c = pos[1];
-  var index = (r - 1) * this.rows + c - 1;
+  var index = (r - 1) * this.cols + c - 1;
   return index;
 };
 
@@ -46,8 +46,7 @@ Grid.prototype.liveCount = function(pos) {
   return res;
 };
 
-// Method to determine next generation.  Returns a single dimensional array
-// holds the positions for the next generation
+// Method to determine next generation
 Grid.prototype.next = function() {
   var res = [];
   var cellStatus, cellIndex, currentLiveCount;
@@ -71,3 +70,11 @@ Grid.prototype.next = function() {
   }
   return res;
 };
+
+exports.Grid = Grid;
+
+
+var grid = new Grid(5, 6);
+var pos = [2, 2];
+//assert.equal(7, grid.posToIndex(pos));
+console.log(grid.posToIndex(pos));

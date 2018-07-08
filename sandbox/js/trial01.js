@@ -13,8 +13,8 @@ var Cell = {
 var main = new Vue({
   el: "#app",
   data: {
-    rows: 10,
-    cols: 10,
+    rows: 5,
+    cols: 6,
     pattern: [testPattern],
     grid: {},
     timer: undefined
