@@ -19,6 +19,8 @@ var main = new Vue({
   data: {
     rows: 16,
     cols: 20,
+    running: false,
+    count: 0,
     pattern: [testPattern],
     grid: {},
     timer: undefined
@@ -37,10 +39,22 @@ var main = new Vue({
         this.$set(this.grid.arr, i, 0);
       }
     },
+    // Method to start and stop the generation of life
+    startStop: function() {
+      console.log("in startStop");
+      if(!this.running) {
+        this.running = true;
+        this.startGenerations();
+      } else {
+        this.running = false;
+        this.stopGenerations();
+      }
+    },
     // Method to call the next generation at regular intervals
     startGenerations: function() {
       this.timer = setInterval(function() {
         main.goNext();
+        main.count += 1;
       }, 600);
     },
     // Method to stop the animation
@@ -50,6 +64,7 @@ var main = new Vue({
     clear: function() {
       var newArr = Array(this.grid.rows * this.grid.cols).fill(0);
       this.grid.arr = newArr;
+      this.count = 0;
     },
     // Method to calculate and apply the next generation
     goNext: function() {

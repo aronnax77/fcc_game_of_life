@@ -26,23 +26,28 @@
     <title-bar></title-bar>
 
 
-    <!--<logo @openeditor="openEditorForNewRecipe" v-show="show"></logo>-->
-
-    <button @click="startGenerations()">Start</button>
-    <button @click="stopGenerations()">Stop</button>
     <button @click="clear()">Clear</button>
     <button @click="printPattern()">Print Pattern</button>
     <button @click="addPatternToGrid(pattern[0])">Add Pattern</button>
 
-    <div class="main-container">
-      <div class="grid-container">
+      <div class="grid-container z-depth-2">
         <gol-cell v-for="(num, key, index) in 320"
                   :id="'cell' + key"
                   @select="selectCell"
                   :class="{blue: grid.arr[key]}"
         ></gol-cell>
       </div>
-    </div>
+
+      <div class="display-container z-depth-2">
+        <a class="btn-floating btn-large waves-effect waves-light red"
+           @click="startStop()"
+           :class="{green:!running}">
+            <i class="material-icons" v-if="!running">play_arrow</i>
+            <i class="material-icons" v-else>stop</i>
+          </a>
+
+          <div class="counter">{{ count }}</div>
+      </div>
 
 
 
@@ -80,11 +85,11 @@ Version: 1.1.1
     <div>
       <nav>
         <div class="nav-wrapper blue">
-          <a href="#" class="brand-logo ">Game of Life</a>
+          <a href="#" class="brand-logo">Game of Life</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#">Clear</a></li>
-          <li><a href="#">New</a></li>
+          <li><a href="#">Edit</a></li>
           <li><a href="#modal1" class="modal-trigger">About</a></li>
         </ul>
         </div>
@@ -92,7 +97,6 @@ Version: 1.1.1
 
       <ul class="sidenav" id="mobile-demo">
         <li><a href="#" class="sidenav-close right close" >X</a></li>
-        <li><router-link to="/">Home</router-link></li>
         <li><a href="#">Clear</a></li>
         <li><a href="#" @click="$emit('openeditor')">Edit</a></li>
         <li><a href="#modal1" class="modal-trigger">About</a></li>
