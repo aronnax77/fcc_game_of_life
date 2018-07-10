@@ -23,12 +23,15 @@
   <!-- Vue.js application -->
   <div id="app">
     <!-- give our app a nice header -->
-    <title-bar></title-bar>
+    <title-bar  @clearboard="clear()"
+                @rand="randomise()"
+                @osc="addPatternToGrid(pattern[0])"
+                @gliders="addPatternToGrid(pattern[1])"
+                @ship="addPatternToGrid(pattern[2])"
+                ></title-bar>
 
 
-    <button @click="clear()">Clear</button>
-    <button @click="printPattern()">Print Pattern</button>
-    <button @click="addPatternToGrid(pattern[0])">Add Pattern</button>
+    <button @click="printPattern()" v-if="show">Print Pattern</button>
 
       <div class="grid-container z-depth-2">
         <gol-cell v-for="(num, key, index) in 320"
@@ -83,13 +86,22 @@ Version: 1.1.1
   <!-- Title bar shown on every page -->
   <template id="logo">
     <div>
+      <!-- Dropdown Structure -->
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!" @click="$emit('clearboard')">Clear</a></li>
+        <li class="divider"></li>
+        <li><a href="#!" @click="$emit('rand')">Randomise</a></li>
+        <li><a href="#!" @click="$emit('osc')">Oscillators</a></li>
+        <li><a href="#!" @click="$emit('gliders')">Two Gliders</a></li>
+        <li><a href="#!" @click="$emit('ship')">Space Ship</a></li>
+      </ul>
+
       <nav>
         <div class="nav-wrapper blue">
           <a href="#" class="brand-logo">Game of Life</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#">Clear</a></li>
-          <li><a href="#">Edit</a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Patterns<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a href="#modal1" class="modal-trigger">About</a></li>
         </ul>
         </div>
@@ -98,7 +110,7 @@ Version: 1.1.1
       <ul class="sidenav" id="mobile-demo">
         <li><a href="#" class="sidenav-close right close" >X</a></li>
         <li><a href="#">Clear</a></li>
-        <li><a href="#" @click="$emit('openeditor')">Edit</a></li>
+        <li><a href="#">Edit</a></li>
         <li><a href="#modal1" class="modal-trigger">About</a></li>
       </ul>
 
@@ -117,9 +129,9 @@ Version: 1.1.1
   <!--JavaScript at end of body for optimized loading-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.min.js"></script>
   <script src="js/game_of_life_logic.js"></script>
   <script src="js/game_of_life_data.js"></script>
+  <script src="js/patterns.js"></script>
   <script src="js/game_of_life.js"></script>
 
 </body>

@@ -17,11 +17,12 @@ var Title = {
 var main = new Vue({
   el: "#app",
   data: {
+    show: false,
     rows: 16,
     cols: 20,
     running: false,
     count: 0,
-    pattern: [testPattern],
+    pattern: [oscillators, gliders, spaceShip],
     grid: {},
     timer: undefined
   },
@@ -62,9 +63,11 @@ var main = new Vue({
       clearInterval(this.timer);
     },
     clear: function() {
-      var newArr = Array(this.grid.rows * this.grid.cols).fill(0);
-      this.grid.arr = newArr;
-      this.count = 0;
+      if(!this.running) {
+        var newArr = Array(this.grid.rows * this.grid.cols).fill(0);
+        this.grid.arr = newArr;
+        this.count = 0;
+      }
     },
     // Method to calculate and apply the next generation
     goNext: function() {
@@ -84,12 +87,34 @@ var main = new Vue({
       for(var x = 0; x < pat.length; x++) {
         this.$set(this.grid.arr, pat[x], 1);
       }
+    },
+    // create a random pattern
+    randomise: function() {
+      var randNum;
+      for(var x = 0; x < this.grid.arr.length; x++) {
+        randNum = Math.floor(Math.random() * 2);
+        //console.log(randNum);
+        this.$set(this.grid.arr, x, randNum);
+      }
     }
   },
+  // initialize the app
   created: function() {
     var newGrid = new Grid(this.rows, this.cols);
     this.grid = newGrid;
     //this.grid.arr = start;
 
   }
+});
+
+// dropddown
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, {});
+  });
+
+  // initialize the materialize sidenav
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems, {});
 });
