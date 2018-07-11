@@ -27,10 +27,12 @@
                 @osc="addPatternToGrid(pattern[0])"
                 @gliders="addPatternToGrid(pattern[1])"
                 @ship="addPatternToGrid(pattern[2])"
+                @pulsar="addPatternToGrid(pattern[3])"
+                :running="running"
                 ></title-bar>
 
 
-    <button @click="printPattern()" v-if="show">Print Pattern</button>
+    <button class="btn" @click="printPattern()" v-if="show">Print Pattern</button>
 
       <div class="grid-container z-depth-2">
         <gol-cell v-for="(num, key, index) in 320"
@@ -50,12 +52,6 @@
 
           <div class="counter">{{ count }}</div>
       </div>
-
-
-
-    <pre>
-      {{ $data }}
-    </pre>
 
   </div><!-- Vue.js app -->
 
@@ -86,12 +82,13 @@ Version: 1.0.0
     <div>
       <!-- Dropdown Structure -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!" @click="$emit('clearboard')">Clear</a></li>
+        <li><a href="#!" @click="$emit('clearboard')" :class="{'red-text': running}">Clear</a></li>
         <li class="divider"></li>
-        <li><a href="#!" @click="$emit('rand')">Randomise</a></li>
-        <li><a href="#!" @click="$emit('osc')">Oscillators</a></li>
-        <li><a href="#!" @click="$emit('gliders')">Two Gliders</a></li>
-        <li><a href="#!" @click="$emit('ship')">Space Ship</a></li>
+        <li><a href="#!" @click="$emit('rand')" :class="{'red-text': running}">Randomise</a></li>
+        <li><a href="#!" @click="$emit('osc')" :class="{'red-text': running}">Oscillators</a></li>
+        <li><a href="#!" @click="$emit('gliders')" :class="{'red-text': running}">Two Gliders</a></li>
+        <li><a href="#!" @click="$emit('ship')" :class="{'red-text': running}">Space Ship</a></li>
+        <li><a href="#!" @click="$emit('pulsar')" :class="{'red-text': running}">Pulsar</a></li>
       </ul>
 
       <nav>
@@ -99,7 +96,7 @@ Version: 1.0.0
           <a href="#" class="brand-logo">Game of Life</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Patterns<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" :class="{'red-text':running}">Patterns<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a href="#modal1" class="modal-trigger">About</a></li>
         </ul>
         </div>
@@ -107,14 +104,15 @@ Version: 1.0.0
 
       <ul class="sidenav" id="mobile-demo">
         <li><a href="#" class="sidenav-close right close" >X</a></li>
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Patterns<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2" :class="{'red-text': running}">Patterns<i class="material-icons right">arrow_drop_down</i></a></li>
         <ul id='dropdown2' class='dropdown-content'>
-          <li><a href="#!" @click="$emit('clearboard')">Clear</a></li>
+          <li><a href="#!" @click="$emit('clearboard')" :class="{'red-text': running}">Clear</a></li>
           <li class="divider"></li>
-          <li><a href="#!" @click="$emit('rand')">Randomise</a></li>
-          <li><a href="#!" @click="$emit('osc')">Oscillators</a></li>
-          <li><a href="#!" @click="$emit('gliders')">Two Gliders</a></li>
-          <li><a href="#!" @click="$emit('ship')">Space Ship</a></li>
+          <li><a href="#!" @click="$emit('rand')" :class="{'red-text': running}">Randomise</a></li>
+          <li><a href="#!" @click="$emit('osc')" :class="{'red-text': running}">Oscillators</a></li>
+          <li><a href="#!" @click="$emit('gliders')" :class="{'red-text': running}">Two Gliders</a></li>
+          <li><a href="#!" @click="$emit('ship')" :class="{'red-text': running}">Space Ship</a></li>
+          <li><a href="#!" @click="$emit('pulsar')" :class="{'red-text': running}">Pulsar</a></li>
         </ul>
         <li><a href="#modal1" class="modal-trigger">About</a></li>
       </ul>

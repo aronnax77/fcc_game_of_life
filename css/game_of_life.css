@@ -8,6 +8,10 @@ body {
   background-color: #fffde7;
 }
 
+button {
+  margin: 10px;
+}
+
 .main-container {
   width: 50vw;
   height: 34vw;

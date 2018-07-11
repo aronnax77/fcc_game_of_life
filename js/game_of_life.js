@@ -11,7 +11,8 @@ var Cell = {
 };
 
 var Title = {
-  template: "#logo"
+  template: "#logo",
+  props: ["running"]
 };
 
 var main = new Vue({
@@ -22,7 +23,7 @@ var main = new Vue({
     cols: 20,
     running: false,
     count: 0,
-    pattern: [oscillators, gliders, spaceShip],
+    pattern: [oscillators, gliders, spaceShip, pulsar],
     grid: {},
     timer: undefined
   },
@@ -34,10 +35,12 @@ var main = new Vue({
     // Method which runs when the cell is left mouse clicked.  Cell is either
     // activated (turned blue) or deactivated (turned white).
     selectCell: function(i) {
-      if(this.grid.arr[i] === 0) {
-        this.$set(this.grid.arr, i, 1);
-      } else {
-        this.$set(this.grid.arr, i, 0);
+      if(!this.running) {
+        if(this.grid.arr[i] === 0) {
+          this.$set(this.grid.arr, i, 1);
+        } else {
+          this.$set(this.grid.arr, i, 0);
+        }
       }
     },
     // Method to start and stop the generation of life
@@ -85,6 +88,7 @@ var main = new Vue({
     },
     addPatternToGrid: function(pat) {
       if(!this.running) {
+        this.clear();
         for(var x = 0; x < pat.length; x++) {
           this.$set(this.grid.arr, pat[x], 1);
         }
@@ -105,8 +109,9 @@ var main = new Vue({
   created: function() {
     var newGrid = new Grid(this.rows, this.cols);
     this.grid = newGrid;
-    //this.grid.arr = start;
-
+    this.randomise();
+    this.startGenerations();
+    this.running = true;
   }
 });
 
