@@ -54,3 +54,35 @@ body {
 .brand-logo {
   margin-left: 30px;
 }
+
+@media only screen and (max-width: 1400px) {
+  .grid-container {
+    width: 60vw;
+    height: 48vw;
+  }
+
+  .cell {
+    width: 3vw;
+    height: 3vw;
+  }
+
+  .display-container {
+    width: 60vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .grid-container {
+    width: 80vw;
+    height: 64vw;
+  }
+
+  .cell {
+    width: 4vw;
+    height: 4vw;
+  }
+
+  .display-container {
+    width: 80vw;
+  }
+}
