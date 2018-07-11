@@ -65,13 +65,12 @@
   <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>About Recipe Box</h4>
-      <p>Recipe Box is one of the challenges set by FreeCodeCamp in connection with the data visualization series.  The application allows you to add, delete, and edit recipes which are stored on the browsers localStorage.</p>
+      <p><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life</a> is an example of a cellular automaton.  This application shows a number of different patterns which illustate the Game of Life and was written in response to a challenge set by FreeCodeCamp in their 'data visualisation' series.</p>
       <p>The application is written using Materialize and Vue.js.</p>
       <pre>
 Author:  Richard Myatt
-Date:    20 June 2018
-Revised: 3 July 2018
-Version: 1.1.1
+Date:    11 July 2018
+Version: 1.0.0
       </pre>
     </div>
     <div class="modal-footer">
@@ -109,8 +108,15 @@ Version: 1.1.1
 
       <ul class="sidenav" id="mobile-demo">
         <li><a href="#" class="sidenav-close right close" >X</a></li>
-        <li><a href="#">Clear</a></li>
-        <li><a href="#">Edit</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Patterns<i class="material-icons right">arrow_drop_down</i></a></li>
+        <ul id='dropdown2' class='dropdown-content'>
+          <li><a href="#!" @click="$emit('clearboard')">Clear</a></li>
+          <li class="divider"></li>
+          <li><a href="#!" @click="$emit('rand')">Randomise</a></li>
+          <li><a href="#!" @click="$emit('osc')">Oscillators</a></li>
+          <li><a href="#!" @click="$emit('gliders')">Two Gliders</a></li>
+          <li><a href="#!" @click="$emit('ship')">Space Ship</a></li>
+        </ul>
         <li><a href="#modal1" class="modal-trigger">About</a></li>
       </ul>
 

@@ -84,17 +84,20 @@ var main = new Vue({
       console.log(res);
     },
     addPatternToGrid: function(pat) {
-      for(var x = 0; x < pat.length; x++) {
-        this.$set(this.grid.arr, pat[x], 1);
+      if(!this.running) {
+        for(var x = 0; x < pat.length; x++) {
+          this.$set(this.grid.arr, pat[x], 1);
+        }
       }
     },
     // create a random pattern
     randomise: function() {
       var randNum;
-      for(var x = 0; x < this.grid.arr.length; x++) {
-        randNum = Math.floor(Math.random() * 2);
-        //console.log(randNum);
-        this.$set(this.grid.arr, x, randNum);
+      if(!this.running) {
+        for(var x = 0; x < this.grid.arr.length; x++) {
+          randNum = Math.floor(Math.random() * 2);
+          this.$set(this.grid.arr, x, randNum);
+        }
       }
     }
   },
@@ -117,4 +120,10 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.sidenav');
   var instances = M.Sidenav.init(elems, {});
+});
+
+// initialize the materialize model(document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems, {});
 });
