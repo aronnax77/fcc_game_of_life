@@ -1,3 +1,10 @@
+/*   Author: Richard Myatt
+     Date: 11 July 2018
+
+     An exercise in data visualization.
+*/
+
+// Logic for the Game of Life
 
 // Constructor function for two dimensional grid to hold the cells for the game
 // of life simulation

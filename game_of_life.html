@@ -31,9 +31,10 @@
                 :running="running"
                 ></title-bar>
 
+      <!-- button only visible when show = true.  Used to log a pattern to the console -->
+      <button class="btn" @click="printPattern()" v-if="show">Print Pattern</button>
 
-    <button class="btn" @click="printPattern()" v-if="show">Print Pattern</button>
-
+      <!-- display main grid -->
       <div class="grid-container z-depth-2">
         <gol-cell v-for="(num, key, index) in 320"
                   :id="'cell' + key"
@@ -42,6 +43,7 @@
         ></gol-cell>
       </div>
 
+      <!-- display start/stop button and counter -->
       <div class="display-container z-depth-2">
         <a class="btn-floating btn-large waves-effect waves-light red"
            @click="startStop()"
@@ -86,7 +88,7 @@ Version: 1.0.0
         <li class="divider"></li>
         <li><a href="#!" @click="$emit('rand')" :class="{'red-text': running}">Randomise</a></li>
         <li><a href="#!" @click="$emit('osc')" :class="{'red-text': running}">Oscillators</a></li>
-        <li><a href="#!" @click="$emit('gliders')" :class="{'red-text': running}">Two Gliders</a></li>
+        <li><a href="#!" @click="$emit('gliders')" :class="{'red-text': running}">Gliders</a></li>
         <li><a href="#!" @click="$emit('ship')" :class="{'red-text': running}">Space Ship</a></li>
         <li><a href="#!" @click="$emit('pulsar')" :class="{'red-text': running}">Pulsar</a></li>
       </ul>
@@ -110,7 +112,7 @@ Version: 1.0.0
           <li class="divider"></li>
           <li><a href="#!" @click="$emit('rand')" :class="{'red-text': running}">Randomise</a></li>
           <li><a href="#!" @click="$emit('osc')" :class="{'red-text': running}">Oscillators</a></li>
-          <li><a href="#!" @click="$emit('gliders')" :class="{'red-text': running}">Two Gliders</a></li>
+          <li><a href="#!" @click="$emit('gliders')" :class="{'red-text': running}">Gliders</a></li>
           <li><a href="#!" @click="$emit('ship')" :class="{'red-text': running}">Space Ship</a></li>
           <li><a href="#!" @click="$emit('pulsar')" :class="{'red-text': running}">Pulsar</a></li>
         </ul>
@@ -131,7 +133,7 @@ Version: 1.0.0
 
   <!--JavaScript at end of body for optimized loading-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
   <script src="js/game_of_life_logic.js"></script>
   <script src="js/game_of_life_data.js"></script>
   <script src="js/patterns.js"></script>

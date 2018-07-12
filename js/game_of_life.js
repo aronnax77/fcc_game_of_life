@@ -1,3 +1,10 @@
+/*   Author: Richard Myatt
+     Date: 11 July 2018
+
+     An exercise in data visualization.
+*/
+
+// cell component
 var Cell = {
   template: "#cell",
   methods: {
@@ -10,19 +17,21 @@ var Cell = {
   }
 };
 
+// title component
 var Title = {
   template: "#logo",
   props: ["running"]
 };
 
+// main vue application
 var main = new Vue({
   el: "#app",
   data: {
-    show: false,
+    show: false,    // show/hide button to log pattern to console
     rows: 16,
     cols: 20,
-    running: false,
-    count: 0,
+    running: false, // flag to indicate whether or not the application is running
+    count: 0,       // provides a count of the life generations
     pattern: [oscillators, gliders, spaceShip, pulsar],
     grid: {},
     timer: undefined
@@ -65,6 +74,7 @@ var main = new Vue({
     stopGenerations: function() {
       clearInterval(this.timer);
     },
+    // clear the grid
     clear: function() {
       if(!this.running) {
         var newArr = Array(this.grid.rows * this.grid.cols).fill(0);
@@ -77,6 +87,7 @@ var main = new Vue({
       var nextGeneration = this.grid.next();
       this.grid.arr = nextGeneration;
     },
+    // method only available when show = true.  Prints pattern to console
     printPattern: function() {
       var res = [];
       for(var x = 0; x < this.grid.arr.length; x++) {
@@ -86,6 +97,7 @@ var main = new Vue({
       }
       console.log(res);
     },
+    // method to add a selected pattern to the grid
     addPatternToGrid: function(pat) {
       if(!this.running) {
         this.clear();

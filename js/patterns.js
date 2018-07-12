@@ -1,3 +1,10 @@
+/*   Author: Richard Myatt
+     Date: 11 July 2018
+
+     An exercise in data visualization.
+*/
+
+// a selection of patterns
 oscillators = [
   49,
   62,
@@ -28,7 +35,7 @@ oscillators = [
   270,
   289,
   290
-]
+];
 
 gliders = [
   1,
@@ -68,4 +75,4 @@ pulsar = [
   169,
   170,
   189
-]
+];
